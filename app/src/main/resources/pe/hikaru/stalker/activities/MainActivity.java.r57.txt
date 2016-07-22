@@ -1,0 +1,231 @@
+package pe.hikaru.stalker.activities;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
+
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.util.Patterns;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	Button btnAndroidPost;
+	Button btnAndroidGet;
+	Button btnAndroidDesfase;
+	TextView lblInfo;
+	String email;
+	long webms;
+	long androidms;
+	boolean escucha = false;
+	HugeWork task = null;
+	String idaccion = "0";
+	
+	short tipo = ClienteHttp.JAVA;
+	String desfase = "";
+	boolean http = false;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		btnAndroidPost = (Button) findViewById(R.id.btnAndroidPost);
+		btnAndroidGet = (Button) findViewById(R.id.btnAndroidGet);
+		btnAndroidDesfase = (Button) findViewById(R.id.btnAndroidDesfase);
+		lblInfo = (TextView) findViewById(R.id.lblInfo);
+		email = obtenerCorreo();
+		
+		btnAndroidDesfase.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (http) {
+					Toast.makeText(getApplicationContext(), "Petición en proceso.", Toast.LENGTH_SHORT).show();
+				} else {
+					http = true;
+					ClienteHttp.get(tipo, "drone?acc=androidhora", null, new AsyncHttpResponseHandler() {
+						@Override
+						public void onSuccess(int status, Header[] cabecera, byte[] cuerpo) {
+							webms = Long.parseLong(new String(cuerpo));
+							androidms = (new Date()).getTime();
+							desfase = ((webms - androidms) / 1000) + "." + ((webms - androidms) % 1000);
+							Toast.makeText(getApplicationContext(), "Desfase calculado: " + desfase, Toast.LENGTH_SHORT).show();
+							http = false;
+						}
+						@Override
+						public void onFailure(int status, Header[] cabecera, byte[] cuerpo, Throwable thr) {
+							Toast.makeText(getApplicationContext(), "No se pudo calcular el desfase. Error " + status, Toast.LENGTH_SHORT).show();
+							http = false;
+						}					
+					});
+				}
+			}
+		});
+		
+		btnAndroidPost.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (desfase.equals("")) {
+					Toast.makeText(getApplicationContext(), "Calcule primero el desfase", Toast.LENGTH_SHORT).show();
+				} else {
+					if (http) {
+						Toast.makeText(getApplicationContext(), "Petición en proceso.", Toast.LENGTH_SHORT).show();
+					} else {
+						RequestParams params = new RequestParams();
+						params.put("email", "value");
+						params.put("horaandroid", (new SimpleDateFormat("HH:mm:ss.SSS", Locale.US)).format(new Date()));
+						params.put("desfase", desfase);
+						http = true;
+						ClienteHttp.post(tipo, "drone?acc=androidpost", params, new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(int status, Header[] cabecera, byte[] cuerpo) {
+								Toast.makeText(getApplicationContext(), "Información enviada", Toast.LENGTH_SHORT).show();
+								http = false;
+							}
+							@Override
+							public void onFailure(int status, Header[] cabecera, byte[] cuerpo, Throwable thr) {
+								Toast.makeText(getApplicationContext(), "No se pudo enviar la petición. Error " + status, Toast.LENGTH_SHORT).show();
+								http = false;
+							}					
+						});
+					}
+				}
+			}
+
+		});
+		/*
+		btnAndroidGet.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (escucha) {
+					btnAndroidGet.setText("Escuchar órdenes");
+					escucha = false;
+					task.cancel(true);
+				} else {
+					btnAndroidGet.setText("No escuchar");
+					escucha = true;
+					start();
+				}
+				
+			}
+
+			private void start() {
+		    	task = new HugeWork();
+				task.execute(url + "drone?acc=androidget");				
+			}
+		});
+			*/
+
+	}
+
+	private final String obtenerCorreo() {
+		try {
+			Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+			Account[] accounts = AccountManager.get(getBaseContext()).getAccounts();
+			for (Account account : accounts)
+				if (emailPattern.matcher(account.name).matches())
+					return account.name;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return "sincorreo";
+	}
+
+    class HugeWork extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... uri) {
+            String responseString = "";
+        	do {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpResponse response;
+                try {
+                    response = httpclient.execute(new HttpGet(uri[0]));
+                    StatusLine statusLine = response.getStatusLine();
+                    if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                        ByteArrayOutputStream out = new ByteArrayOutputStream();
+                        response.getEntity().writeTo(out);
+                        out.close();
+                        responseString = out.toString();
+        				publishProgress(responseString);
+                    } else{
+                        //Closes the connection.
+                        response.getEntity().getContent().close();
+                        throw new IOException(statusLine.getReasonPhrase());
+                    }
+                } catch (ClientProtocolException e) {
+                    //TODO Handle problems..
+                } catch (IOException e) {
+                    //TODO Handle problems..
+                }
+			} while (escucha);
+            return responseString;
+        }
+
+
+        
+        @SuppressLint("SimpleDateFormat")
+		@Override
+		protected void onProgressUpdate(String... values) {
+            if (!idaccion.equals(((String[])values)[0].split("\\|")[0])) {
+            	idaccion = ((String[])values)[0].split("\\|")[0];
+            	lblInfo.setText(
+        			"ID: " + ((String[])values)[0].split("\\|")[0] + "\n" +
+        			"Hora servidor: " + ((String[])values)[0].split("\\|")[1] + "\n" +
+        			"Longitud recibida: " + ((String[])values)[0].split("\\|")[2].length() + "\n" +
+        			"Hora dispositivo: " + (new SimpleDateFormat("HH:mm:ss.SSS")).format(new Date()) + "\n" +
+        			"Desfase calculado: " + desfase
+            	);
+            }
+			super.onProgressUpdate(values);
+		}
+
+
+		@Override
+		protected void onPostExecute(String result) {
+        	System.out.println(result);
+            super.onPostExecute(result);
+		}
+
+
+
+
+    }
+
+}

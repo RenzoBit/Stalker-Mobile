@@ -1,0 +1,258 @@
+[
+    {
+        "outputFile": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 1,
+                        "startOffset": 86,
+                        "endColumn": 54,
+                        "endOffset": 139
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 55,
+                    "endOffset": 164
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 1,
+                        "startOffset": 142,
+                        "endColumn": 52,
+                        "endOffset": 193
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 169,
+                    "endColumn": 52,
+                    "endOffset": 217
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 1,
+                        "startOffset": 96,
+                        "endColumn": 49,
+                        "endOffset": 144
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 222,
+                    "endColumn": 42,
+                    "endOffset": 260
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 1,
+                        "startOffset": 55,
+                        "endColumn": 39,
+                        "endOffset": 93
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 265,
+                    "endColumn": 62,
+                    "endOffset": 323
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 1,
+                        "startOffset": 307,
+                        "endColumn": 59,
+                        "endOffset": 365
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 328,
+                    "endColumn": 58,
+                    "endOffset": 382
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 1,
+                        "startOffset": 251,
+                        "endColumn": 55,
+                        "endOffset": 305
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 387,
+                    "endColumn": 53,
+                    "endOffset": 436
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 1,
+                        "startOffset": 429,
+                        "endColumn": 50,
+                        "endOffset": 478
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 441,
+                    "endColumn": 64,
+                    "endOffset": 501
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 1,
+                        "startOffset": 367,
+                        "endColumn": 61,
+                        "endOffset": 427
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 506,
+                    "endColumn": 55,
+                    "endOffset": 557
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 1,
+                        "startOffset": 198,
+                        "endColumn": 52,
+                        "endOffset": 249
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 562,
+                    "endColumn": 52,
+                    "endOffset": 610
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 1,
+                        "startOffset": 147,
+                        "endColumn": 49,
+                        "endOffset": 195
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 615,
+                    "endColumn": 38,
+                    "endOffset": 649
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 1,
+                        "startOffset": 480,
+                        "endColumn": 35,
+                        "endOffset": 514
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 654,
+                    "endLine": 19,
+                    "endColumn": 9,
+                    "endOffset": 925
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 1,
+                        "startOffset": 182,
+                        "endLine": 12,
+                        "endColumn": 9,
+                        "endOffset": 457
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 930,
+                    "endLine": 22,
+                    "endColumn": 9,
+                    "endOffset": 1076
+                },
+                "from": {
+                    "file": "C:\\PROYECTOS\\AndroidStudioProjects\\Stalker-Mobile\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 1,
+                        "startOffset": 492,
+                        "endLine": 17,
+                        "endColumn": 9,
+                        "endOffset": 640
+                    }
+                }
+            }
+        ]
+    }
+]

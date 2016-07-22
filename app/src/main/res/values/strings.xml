@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Drone</string>
+	<string name="action_settings">Settings</string>
+	<string name="hello_world">Hello world!</string>
+
+	<string name="btnAndroidPost">Enviar orden</string>
+	<string name="btnAndroidGet">Escuchar órdenes</string>
+	<string name="btnAndroidDesfase">Calcular desfase</string>
+	<string name="btnAndroidHistorial">Enviar historial</string>
+	<string name="btnAndroidGps">Obtener GPS</string>
+	<string name="lblInfo">¿?</string>
+
+</resources>
